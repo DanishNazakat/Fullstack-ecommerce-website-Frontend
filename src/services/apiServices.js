@@ -38,7 +38,7 @@
 
 export const apiRequest = async (url, params = {}) => {
   try {
-    const response = await fetch(`http://localhost:3000/api${url}`, {
+    const response = await fetch(`fullstack-ecommerce-website-backend.vercel.app/api${url}`, {
       ...params,
       credentials: "include", // 🔥 VERY IMPORTANT (cookie send karega)
     });
