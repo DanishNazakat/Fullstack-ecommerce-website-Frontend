@@ -36,11 +36,42 @@
 
 // apiService.js
 
+// export const apiRequest = async (url, params = {}) => {
+//   try {
+//     const response = await fetch(`fullstack-ecommerce-website-frontend-4t5xytw5p.vercel.app${url}`, {
+//       ...params,
+//       credentials: "include", // 🔥 VERY IMPORTANT (cookie send karega)
+//     });
+
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! status: ${response.status}`);
+//     }
+
+//     return await response.json();
+//   } catch (error) {
+//     console.log("Error fetching data:", error);
+//     throw error;
+//   }
+// };
+
+
+
+// apiService.js
+
+// Yahan apne Backend ka URL likhein (e.g., https://your-backend-api.vercel.app)
+const BACKEND_URL = "https://aapka-backend-url.vercel.app"; 
+
 export const apiRequest = async (url, params = {}) => {
   try {
-    const response = await fetch(`fullstack-ecommerce-website-frontend-4t5xytw5p.vercel.app${url}`, {
+    // 1. Check karein ke URL "https://" se start ho raha ho
+    // 2. "/api" prefix zaroori hai kyunke aapke server mein app.use('/api', ...) hai
+    const response = await fetch(`${BACKEND_URL}/api${url}`, {
       ...params,
-      credentials: "include", // 🔥 VERY IMPORTANT (cookie send karega)
+      headers: {
+        "Content-Type": "application/json",
+        ...params.headers,
+      },
+      credentials: "include", 
     });
 
     if (!response.ok) {
