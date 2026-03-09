@@ -50,6 +50,9 @@ function Home() {
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+const logintredirect = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="home-wrapper">
@@ -80,6 +83,9 @@ function Home() {
             </button>
             <button className="nav-icon-btn" onClick={profile}>
               <span className="material-symbols-outlined">person</span>
+            </button>
+            <button className="nav-icon-btn" onClick={logintredirect}>
+              <span className="">login</span>
             </button>
           </div>
         </div>
