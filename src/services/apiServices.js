@@ -65,10 +65,10 @@ export const apiRequest = async (url, params = {}) => {
   try {
     // 1. Check karein ke URL "https://" se start ho raha ho
     // 2. "/api" prefix zaroori hai kyunke aapke server mein app.use('/api', ...) hai
-    const response = await fetch(`${BACKEND_URL}/api${url}`, {
+    const response = await fetch(`/api${url}`, {
       ...params,
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json",x
         ...params.headers,
       },
       credentials: "include", 

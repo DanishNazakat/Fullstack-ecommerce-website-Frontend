@@ -99,6 +99,7 @@
   background-color: #416aa3;
 }
 
+
 .cart-badge-blue {
   position: absolute;
   top: 0;
@@ -191,6 +192,21 @@
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(242, 91, 25, 0.4);
   background: var(--hover-orange);
+}
+.add-btn {
+  background: var(--primary-orange);
+  transition: all 0.3s ease !important;
+}
+
+.add-btn:hover {
+  background: #d44a10 !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 8px 20px rgba(242, 91, 25, 0.4) !important;
+}
+
+/* Jab click karein to thoda press ho */
+.add-btn:active {
+  transform: scale(0.95);
 }
 
 /* --- Responsive Adjustments --- */

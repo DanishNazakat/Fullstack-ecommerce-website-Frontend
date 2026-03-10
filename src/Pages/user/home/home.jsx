@@ -12,11 +12,28 @@ function Home() {
   // 1. Function jo product ka data receive karke checkout par bhejega
   const handleDirectCheckout = (product) => {
     navigate("/checkout", {
-      state: { 
+      state: {
         cartItems: [product], // Is product ko array mein bhej rahe hain
         total: product.price   // Iska price total ban jayega
       }
     });
+  };
+
+  const handleOrder = async (product) => {
+    const orderData = {
+      products: [{ productId: product._id, price: product.price, quantity: 1 }],
+      totalAmount: product.price,
+      address: "User's Default Address" // Baad mein dynamic kar sakte hain
+    };
+
+    try {
+      const result = await placeOrder(orderData);
+      if (result.success) {
+        alert("Order Placed Successfully!");
+      }
+    } catch (err) {
+      alert("Order Failed: " + err.message);
+    }
   };
 
   const categoryData = [
@@ -50,7 +67,7 @@ function Home() {
       item.description.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-const logintredirect = () => {
+  const logintredirect = () => {
     navigate("/login");
   };
 
@@ -59,7 +76,7 @@ const logintredirect = () => {
       {/* --- Navbar --- */}
       <nav className="main-nav">
         <div className="nav-content container">
-          <div className="logo-section" onClick={() => navigate("/")} style={{cursor: 'pointer'}}>
+          <div className="logo-section" onClick={() => navigate("/")} style={{ cursor: 'pointer' }}>
             <div className="logo-icon">
               <span className="material-symbols-outlined">shopping_bag</span>
             </div>
@@ -147,9 +164,9 @@ const logintredirect = () => {
                     <span className="item-price">${item.price}</span>
                     <div className="action-btns">
                       {/* 2. Button par click hone par handleDirectCheckout call ho raha hai */}
-                      <button className="add-btn" onClick={() => handleDirectCheckout(item)}>
+                      <button className="add-btn" onClick={() => handleOrder(item)}>
                         <span className="material-symbols-outlined">add_shopping_cart</span>
-                        <span>Buy Now</span>
+                        <span>Order Now</span>
                       </button>
                     </div>
                   </div>
